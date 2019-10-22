@@ -4,29 +4,16 @@ class Clock extends Component {
   constructor() {
     super();
     this.state = {
-      time: '88:88:88'
+      time: new Date().toLocaleTimeString(undefined, {hour12: false})
     }
   }
 
   componentDidMount() {
     setInterval( () => {
-      let time = new Date();
-      let hour = this.toTwoDigits(time.getHours());
-      let minute = this.toTwoDigits(time.getMinutes());
-      let second = this.toTwoDigits(time.getSeconds());
-
       this.setState({
-        time: hour + ':' + minute + ':' + second
+        time: new Date().toLocaleTimeString(undefined, {hour12: false})
       });
     }, 1000);
-  }
-
-  // Make every number of time is two digits
-  toTwoDigits(time) {
-    if (time < 10) {
-      time = '0' + time.toString();
-    } 
-    return time;
   }
 
   render() {
